@@ -1,5 +1,6 @@
 #!/bin/bash
 source config.sh
+mkdir -p "${CACHEPATH}"
 
 ./dumb-init.sh
 ./carl-exit.sh
