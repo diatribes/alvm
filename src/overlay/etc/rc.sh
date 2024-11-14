@@ -20,8 +20,12 @@ if [ ! -d "/etc/firstboot" ]; then
 	apk update
 	apk upgrade
 	apk add `cat /mnt/input/packages.conf`
+	chmod +x /mnt/input/write-cpio.sh
+	/mnt/input/write-cpio.sh
+	/carl-exit
+else
+	cd
+	/bin/sh
+	/carl-exit
 fi
 
-cd
-/bin/sh
-/carl-exit
