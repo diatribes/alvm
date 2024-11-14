@@ -1,3 +1,4 @@
+Scripts that will generate a small kernel+alpine rootfs cpio that can be direct booted with qemu.
 
 * cd alvm
 * vi ./build/input/packages.conf (newline or space separated list of apk packages to install)
