@@ -2,6 +2,7 @@
 source config.sh
 qemu-system-x86_64 \
     -display none \
+    -no-reboot \
     -no-user-config \
     -nodefaults \
     -m 256 \
@@ -9,7 +10,7 @@ qemu-system-x86_64 \
     -nographic \
     -serial none -device isa-serial,chardev=s1 \
     -chardev stdio,id=s1 \
-    -append "notsc" \
+    -append "panic=-1 notsc" \
     -initrd "${OUTPUTPATH}"/rootfs.cpio \
     -nic user,model=virtio-net-pci \
     -virtfs local,path=${INPUTPATH},mount_tag=host0,security_model=none,id=host0 \
