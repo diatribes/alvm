@@ -14,6 +14,14 @@ mount -t 9p -o trans=virtio host1 /mnt/output
 echo $(uname -a)
 ifconfig eth0 up
 sdhcp
+
+if [ ! -d "/etc/firstboot" ]; then
+	touch /etc/firstboot
+	apk update
+	apk upgrade
+	apk add `cat /mnt/input/packages.conf`
+fi
+
 cd
 /bin/sh
 /carl-exit
