@@ -13,7 +13,7 @@ if [ -f "${OUTPUTPATH}/rootfs-new.cpio" ]; then
         -kernel "${OUTPUTPATH}"/bzImage \
         -nographic \
         -serial none -device isa-serial,chardev=s1 \
-        -chardev stdio,id=s1 \
+        -chardev stdio,id=s1,signal=off \
         -append "panic=-1 notsc" \
         -initrd "${OUTPUTPATH}"/rootfs-new.cpio \
         -nic user,model=virtio-net-pci
@@ -29,7 +29,7 @@ else
         -kernel "${OUTPUTPATH}"/bzImage \
         -nographic \
         -serial none -device isa-serial,chardev=s1 \
-        -chardev stdio,id=s1 \
+        -chardev stdio,id=s1,signal=off \
         -append "panic=-1 notsc" \
         -initrd "${OUTPUTPATH}"/rootfs.cpio \
         -nic user,model=virtio-net-pci \
@@ -38,4 +38,3 @@ else
 fi
 
 
-    #-chardev stdio,id=s1,signal=off \
