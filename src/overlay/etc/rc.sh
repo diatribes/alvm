@@ -15,7 +15,7 @@ echo $(uname -a)
 ifconfig eth0 up
 sdhcp
 
-if [ ! -d "/etc/firstboot" ]; then
+if [ ! -f "/etc/firstboot" ]; then
 	touch /etc/firstboot
 	apk update
 	apk upgrade
