@@ -1,17 +1,18 @@
 #!/bin/bash
+source config.sh
 qemu-system-x86_64 \
     -display none \
     -no-user-config \
     -nodefaults \
-    -m 4G \
+    -m 1G \
     -cpu host \
     -enable-kvm  \
-    -kernel ./bzImage \
+    -kernel "${OUTPUTPATH}"/bzImage \
     -nographic \
     -chardev stdio,id=s1,signal=off \
     -serial none -device isa-serial,chardev=s1 \
     -append "notsc" \
-    -initrd rootfs.cpio \
+    -initrd "${OUTPUTPATH}"/rootfs.cpio \
     -nic user,model=virtio-net-pci
 
 # for tap

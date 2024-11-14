@@ -6,7 +6,7 @@ mount -t proc none /proc
 mount -t sysfs none /sys
 echo $(uname -a)
 ifconfig eth0 up
-#sdhcp
+sdhcp
 cd
 /bin/sh
 /carl-exit
