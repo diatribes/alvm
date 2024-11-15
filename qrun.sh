@@ -8,7 +8,7 @@ qemu-system-x86_64 \
     -nodefaults \
     -cpu host \
     -enable-kvm \
-    -m 256 \
+    -m ${RUNMEM} \
     -kernel "${OUTPUTPATH}"/bzImage \
     -nographic \
     -serial none -device isa-serial,chardev=s1 \
