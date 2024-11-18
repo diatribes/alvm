@@ -1,5 +1,5 @@
-#!/bin/bash
-source config.sh
+#!/bin/sh
+. ./config.sh
 
 qemu-system-x86_64 \
     -display none \
@@ -9,14 +9,11 @@ qemu-system-x86_64 \
     -cpu host \
     -enable-kvm \
     -m ${RUNMEM} \
-    -kernel "${OUTPUTPATH}"/bzImage \
+    -device isa-debug-exit,iobase=0x604,iosize=0x04 \
+    -kernel "${OUTPUTPATH}"/bzImage-new \
     -nographic \
     -serial none -device isa-serial,chardev=s1 \
     -chardev stdio,id=s1,signal=off \
-    -append "panic=-1 notsc" \
-    -initrd "${OUTPUTPATH}"/rootfs-new.cpio \
-    -nic user,model=virtio-net-pci \
-    -virtfs local,path=${INPUTPATH},mount_tag=host0,security_model=none,id=host0 \
-    -virtfs local,path=${OUTPUTPATH},mount_tag=host1,security_model=none,id=host1
-
+    -append "notsc" \
+    -initrd "${OUTPUTPATH}"/rootfs-new.cpio
 
