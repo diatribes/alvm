@@ -22,9 +22,6 @@ mkdir -pv "${OUTPUTPATH}"
 ./build/scripts/dumb-init.sh
 ./build/scripts/carl-exit.sh
 ./build/scripts/rootfs.sh
-
-export CURRENTKERNELCONFIG=${KERNELBOOTSTRAPCONFIG}
-export CURRENTKERNELFILENAME="bzImage"
 ./build/scripts/kernel.sh
 
 # Exit early if UPINEVM_NOLAUNCH is set
@@ -39,7 +36,7 @@ qemu-system-x86_64 \
     -no-user-config \
     -nodefaults \
     -m ${INSTALLMEM} \
-    -kernel "${OUTPUTPATH}/${CURRENTKERNELFILENAME}" \
+    -kernel "${OUTPUTPATH}"/bzImage \
     -nographic \
     -serial none -device isa-serial,chardev=s1 \
     -chardev stdio,id=s1,signal=off \
@@ -49,6 +46,3 @@ qemu-system-x86_64 \
     -virtfs local,path=${INPUTPATH},mount_tag=host0,security_model=none,id=host0 \
     -virtfs local,path=${OUTPUTPATH},mount_tag=host1,security_model=none,id=host1
 
-export CURRENTKERNELFILENAME="bzImage-new"
-export CURRENTKERNELCONFIG=${KERNELCONFIG}
-./build/scripts/kernel.sh

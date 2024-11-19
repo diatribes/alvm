@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/bin/sh
+
 mkdir -p "${CACHEPATH}"
 cd "${CACHEPATH}"
 if [ ! -d "linux-${KERNELVER}" ]; then
@@ -6,5 +7,5 @@ if [ ! -d "linux-${KERNELVER}" ]; then
     tar xvf "linux-${KERNELVER}.tar.xz"
 fi
 cd "linux-${KERNELVER}"
-cp "${CURRENTKERNELCONFIG}" .config
+cp "${KERNELCONFIGPATH}" .config
 make -j$(nproc) && cp arch/x86/boot/bzImage "${OUTPUTPATH}/${CURRENTKERNELFILENAME}"

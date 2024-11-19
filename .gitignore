@@ -1,5 +1,8 @@
 cache
 bzImage
+build/output/
+src/carl-exit/carl-exit
+src/dumb-init/dumb-init
 src/overlay/usr/bin/sdhcp
 src/overlay/usr/bin/oksh
 src/overlay/carl-exit
